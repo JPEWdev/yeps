@@ -170,7 +170,7 @@ class YEP:
             "superseded_by": self.superseded_by,
             # extra non-header keys for use in ``yeps.json``
             "author_names": tuple(self._author_names),
-            "url": f"https://yeps.python.org/yep-{self.number:0>4}/",
+            "url": f"https://JPEWdev.github.io/yeps/yep-{self.number:0>4}/",
         }
 
 
