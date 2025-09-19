@@ -182,7 +182,7 @@ class YEPZeroWriter:
 
             self.emit_title("API")
             self.emit_text(
-                "The `YEPS API </api/yeps.json>`__ is a JSON file of metadata about "
+                "The `YEPS API <https://JPEWdev.github.io/yeps/api/yeps.json>`__ is a JSON file of metadata about "
                 "all the published YEPs. :doc:`Read more here <api/index>`."
             )
             self.emit_newline()
