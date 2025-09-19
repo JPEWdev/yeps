@@ -57,13 +57,14 @@ jobs:
           cache-dependency-path: |
             requirements.txt
 
-      - name: Run tests with tox
-        run: |
-          uvx --with tox-uv tox -e py -- -v --cov-report term
+      # We removed the tests from the original PEP repo
+      #- name: Run tests with tox
+      #  run: |
+      #    uvx --with tox-uv tox -e py -- -v --cov-report term
 
-      - name: Upload coverage
-        uses: codecov/codecov-action@v5
-        with:
-          flags: ${{ matrix.os }}
-          name: ${{ matrix.os }} Python ${{ matrix.python-version }}
-          token: ${{ secrets.CODECOV_ORG_TOKEN }}
+      #- name: Upload coverage
+      #  uses: codecov/codecov-action@v5
+      #  with:
+      #    flags: ${{ matrix.os }}
+      #    name: ${{ matrix.os }} Python ${{ matrix.python-version }}
+      #    token: ${{ secrets.CODECOV_ORG_TOKEN }}
