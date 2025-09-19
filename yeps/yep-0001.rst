@@ -1,0 +1,20 @@
+YEP: 1
+Title: YEP Purpose and Guidance
+Author: Joshua Watt
+Status: Active
+Type: Process
+Created: 18-sep-2025
+
+What is a YEP?
+==============
+
+YEP Audience
+============
+
+YEP Types
+=========
+
+Copyright
+=========
+
+This document has been placed in the public domain.

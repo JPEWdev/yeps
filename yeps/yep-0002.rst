@@ -1,0 +1,148 @@
+YEP: 2
+Title: Backporting of SPDX 3 to Yocto 5.0 release branch
+Author: Joshua Watt
+Status: Draft
+Type: Process
+Created: 18-sep-2025
+Yocto-Version: 5.0
+
+Proposal to Backport SPDX 3 to Yocto 5.0 (Scarthgap) Release
+============================================================
+
+This document outlines a proposal to backport the SPDX 3 Software Bill of
+Material (SBoM) support currently on master of OpenEmbedded Core to the Yocto
+5.0 (scarthgap) release branch. This is a change from the normal stable release
+branch policy of not backporting major features to stable branches.
+
+
+Background
+==========
+
+`SPDX 3.0`_ was released on April 14th, 2024. While Yocto was a very early
+adopter and had an implementation of SPDX 3 in development even before the
+final release, this timeline was still to tight to fit in for the Yocto 5.0
+release window, since it also released in April. As a result, Yocto 5.1
+(Styhead) was to first release to have SPDX 3 support.
+
+Practically speaking, this means that there is currently no Yocto Long Term
+Support (LTS) release that supports SPDX 3, since Yocto 5.0 is the most recent
+LTS release and will be supported until April 2028. The next scheduled LTS
+release is Yocto 6.0 (Wrynose), scheduled for April 2026.
+
+Yocto has supported creating `SPDX 2.2`_ SBoMs since the 3.4 release (Honister,
+October 2021). However, while these SBoMs do provide useful and actionable
+information, it was discovered in the course of implementation that this
+version of SPDX was incapable of precisely describing some of the more
+complicated nuances that occur in Yocto builds, and also was insufficient to
+describe the process by which software vulnerabilities were patched in upstream
+layers.  As such, the implementation spurred members of the Yocto community to
+be more involved in the design of the then upcoming SPDX 3 release. This
+interaction was mutually beneficial for both projects; Yocto was able to ensure
+that SPDX 3 could express the more complicated situations that arise during
+builds, and SPDX got advice on concrete examples of the complicated builds, as
+well as having a very early adopter of the new standard. Yocto SBoMs are often
+provided as examples of what a SPDX 3.0 document can/should look like.
+
+As of the date of this document, the master branch of OpenEmbedded Core still
+supports both SPDX 2.2 and SPDX 3.0. However, SPDX 3.0 is considered the better
+implementation, and is the one enabled by default when building. SPDX 2.2
+support does still receive bug fixes, but most of the SPDX development effort
+focus on SPDX 3.0.
+
+On 23 October, 2024 the European Union (EU) ratified
+`Regulation (EU) 2024/2847`_ (commonly referred to as the Cyber Resilience Act
+or CRA) with the general goal of improving the cybersecurity posture of
+consumer software in the EU. The regulation imposes many requirement on
+software suppliers, and goes into full effect in 11 December, 2027 (with some
+parts not relevant to this document going into effect sooner in mid 2026).
+
+One of the requirements of the CRA is that manufacturers be able to provide the
+EU with an SBoM for any software covered under the regulation. The purpose of
+this SBoM is to provide information about the software and its dependencies, as
+well as evaluate the software for exposure to vulnerabilities (e.g. check if
+any CVEs affect it).
+
+It is important to keep in mind that as of the time of this writing, the CRA
+does not have concrete requirements for supplier SBoMs. These are still in the
+process of being written by the EU, with the expectation that they will be
+complete some time in 2026.
+
+Problem Statement
+=================
+
+The Yocto project is in good position to provide `comprehensive SBoMs`_ to its
+users through the SPDX support implemented in OpenEmbedded Core. These
+generated SBoM can go a long way toward helping end users comply with the CRA
+SBoM requirements.
+
+With the Yocto 5.0 release set to leave support in April 2028, there is a
+roughly 5 month overlap between the enforcement of the CRA and the end of
+support for Yocto 5.0. Given the typical timing of software life cycles, it is
+highly likely that many users will be needing software built with Yocto 5.0 to
+comply with the CRA SBoM requirements.
+
+However, the SPDX 2.2 support that is currently available in Yocto 5.0 is
+lacking in a few key points related to CRA compliance, specifically in regard
+to vulnerability reporting. It is also worth noting that as more concrete
+information about the CRA comes out in the next years, the SPDX community will
+likely be willing to make updates and changes to the SPDX 3 specification in
+order make compliance easier; it is less likely that they will do the same for
+the SPDX 2.2 specification.
+
+Proposed Solution
+=================
+
+The proposed solution to this problem is to backport the SPDX 3.0 support
+currently on master to the Yocto 5.0 stable branch, bypassing the normal policy
+of not backporting major features. This would provide end users with the higher
+quality SBoMs required by the CRA, and would also put the project in a better
+position to implement any other changes required by the CRA, since all
+supported version of Yocto would then have SPDX 3.0 support (ignoring the Yocto
+4.0 "Kirkstone" release which goes out of support April 2026).
+
+The bulk of the work to do this backport has already been `proposed`_ on the
+openembeded-core mailing list. A through review of this proposal is still
+necessary, but the overall strategy has been reviewed and approved by the
+original SPDX 3 author.
+
+This proposal would see SPDX 2.2 remain the default option for generation of
+SPDX data on the Yocto 5.0 branch, so as not to break backward compatibility.
+User could then switch from SPDX 2.2 to SPDX 3.0 as desired.
+
+Alternate Solutions
+===================
+
+The commonly used alternative solution to backports into stable branches is to
+leverage the layering power of bitbake to provide the backport in a separate
+layer. This has been done many times, with several examples in the
+`meta-lts-mixins`_ repository. However, this approach is not recommended for
+backporting SPDX 3 for a number of reasons:
+
+1. The SPDX 3 code makes several changes to parts of the codebase that cannot
+   be easily modified in a separate layer, including python library code and
+   bbclass files.
+2. Backporting in this method would make it harder to backport any additional
+   future changes desired for CRA compliance, or bug fixes. If the change is
+   done directly in OpenEmbedded Core, simple backports can be done from master
+   to the stable branch
+
+
+Acknowledgments
+================
+
+Thanks to Kamel Bouhara for putting together the backport patches.
+
+Footnotes
+=========
+
+.. _SPDX 3.0: https://spdx.github.io/spdx-spec/v3.0.1/
+.. _SPDX 2.2: https://spdx.github.io/spdx-spec/v2.2.2/
+.. _Regulation (EU) 2024/2847: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+.. _comprehensive SBoMs: https://www.youtube.com/watch?v=y0N4FnkwTOY
+.. _proposed: https://lists.openembedded.org/g/openembedded-core/topic/115086052
+.. _meta-lts-mixins: https://git.yoctoproject.org/meta-lts-mixins/
+
+Copyright
+=========
+
+This document has been placed in the public domain.

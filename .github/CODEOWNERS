@@ -1,0 +1,30 @@
+# The authors and sponsors of YEPs.
+# Any commented-out YEP predates YEP sponsorship or their authors are no longer
+# active core developers.
+
+# The YEP editors are the fallback "owners" for everything in this repository.
+*             @yocto/yep-editors
+
+# YEP infrastructure
+.github/dependabot.yml  @JPEWdev
+.github/workflows/      @JPEWdev
+Makefile                @JPEWdev
+requirements.txt        @JPEWdev
+
+yep_sphinx_extensions/  @JPEWdev
+build.py                @JPEWdev
+yeps/conf.py            @JPEWdev
+yeps/contents.rst       @JPEWdev
+
+# Linting infrastructure
+.codespell/             @JPEWdev
+.codespellrc            @JPEWdev
+.pre-commit-config.yaml @JPEWdev
+.ruff.toml              @JPEWdev
+check-yeps.py           @JPEWdev
+
+# Git infrastructure
+.gitattributes          @JPEWdev
+.gitignore              @JPEWdev
+
+yeps/yep-0001.rst  @JPEWdev

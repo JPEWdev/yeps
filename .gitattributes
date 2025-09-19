@@ -1,0 +1,9 @@
+# Ensure files are always checked in with consistent line endings
+* text eol=lf
+*.png binary
+*.pptx binary
+*.odp binary
+
+# Instruct linguist not to ignore the YEPs
+# https://github.com/github-linguist/linguist/blob/master/docs/overrides.md
+yeps/*.rst text linguist-detectable

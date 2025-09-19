@@ -1,0 +1,28 @@
+# YEPs
+yep-0000.rst
+yeps.rss
+topic
+/build
+
+# Bytecode
+__pycache__
+*.py[co]
+
+# Editors
+*~
+.idea
+.vscode
+*.swp
+
+# Tests
+coverage.xml
+.coverage
+.tox
+
+# Virtual environments
+*env
+/venv
+
+# Builds
+/sphinx-warnings.txt
+/yeps/numerical.rst
