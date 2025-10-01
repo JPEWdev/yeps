@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>Newest Yocto YEPs</title>
+    <link>https://JPEWdev.github.io/yeps/</link>
+    <description>Newest Yocto Enhancement Proposals (YEPs): Information on new language features and some meta-information like release procedure and schedules.</description>
+    <atom:link href="https://JPEWdev.github.io/yeps/yeps.rss" rel="self"/>
+    <docs>https://cyber.harvard.edu/rss/rss.html</docs>
+    <language>en</language>
+    <lastBuildDate>Wed, 01 Oct 2025 21:16:52 GMT</lastBuildDate>
+    <item>
+      <title>YEP 2: Backporting of SPDX 3 to Yocto 5.0 release branch</title>
+      <link>https://JPEWdev.github.io/yeps/yep-0002/</link>
+      <description></description>
+      <author>Joshua Watt</author>
+      <guid isPermaLink="true">https://JPEWdev.github.io/yeps/yep-0002/</guid>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>YEP 1: YEP Purpose and Guidance</title>
+      <link>https://JPEWdev.github.io/yeps/yep-0001/</link>
+      <description></description>
+      <author>Joshua Watt</author>
+      <guid isPermaLink="true">https://JPEWdev.github.io/yeps/yep-0001/</guid>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>YEP 0: Index of Yocto Enhancement Proposals (YEPs)</title>
+      <link>https://JPEWdev.github.io/yeps/yep-0000/</link>
+      <description>This YEP contains the index of all Yocto Enhancement Proposals, known as YEPs.  YEP numbers are assigned by the YEP editors, and once assigned are never changed.  The version control history of the YEP texts represent their historical record.</description>
+      <author>The YEP Editors</author>
+      <guid isPermaLink="true">https://JPEWdev.github.io/yeps/yep-0000/</guid>
+      <pubDate>Thu, 13 Jul 2000 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
